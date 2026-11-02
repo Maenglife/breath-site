@@ -39,3 +39,24 @@
   days.firstChild.click();
   document.getElementById('form').onsubmit=e=>{e.preventDefault();document.getElementById('ok').textContent=sel?`Tak! (Demo) Din forespørgsel på ${sel} er ikke sendt endnu – bookingsystem tilkobles senere.`:'Vælg venligst en tid først.'};
 })();
+// Mobile menu
+(() => {
+  const btn=document.getElementById('burger'),menu=document.getElementById('menu');if(!btn)return;
+  const mq=matchMedia('(max-width:820px)');
+  const links=()=>[...menu.querySelectorAll('a')].filter(a=>a.offsetParent!==null);
+  function set(open,focusBack){
+    btn.setAttribute('aria-expanded',open);btn.setAttribute('aria-label',open?'Luk menu':'Åbn menu');
+    menu.classList.toggle('open',open);document.body.classList.toggle('menu-open',open);
+    if(open)setTimeout(()=>links()[0]?.focus(),50);else if(focusBack)btn.focus();
+  }
+  btn.addEventListener('click',()=>set(btn.getAttribute('aria-expanded')!=='true'));
+  menu.addEventListener('click',e=>{if(e.target.closest('a'))set(false)});
+  document.addEventListener('keydown',e=>{
+    if(!menu.classList.contains('open'))return;
+    if(e.key==='Escape'){set(false,true);return}
+    if(e.key==='Tab'){const f=[btn,...links()],i=f.indexOf(document.activeElement);
+      if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus()}
+      else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus()}}
+  });
+  mq.addEventListener?.('change',()=>{if(!mq.matches)set(false)});
+})();

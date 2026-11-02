@@ -3,7 +3,7 @@
 <head>
 <meta name="robots" content="noindex">
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Navn Efternavn · Videnskabeligt funderet åndedrætstræning</title>
 <meta name="description" content="Åndedrætstræning baseret på forskning – individuelle forløb, hold og workshops hos fysioterapeut Navn Efternavn.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,10 +14,14 @@
 <a class="skip" href="#main">Spring til indhold</a>
 <header class="nav">
   <a href="#top" class="logo">Navn Efternavn<span class="ph-tag">skabelon</span></a>
-  <nav aria-label="Hovedmenu"><ul>
+  <nav aria-label="Hovedmenu" class="menu" id="menu"><ul>
     <li><a href="#om">Om</a></li><li><a href="#videnskaben">Videnskaben</a></li>
     <li><a href="#tilbud">Tilbud</a></li><li><a href="#faq">FAQ</a></li>
-    <li><a href="#book" class="btn btn-sm">Book tid</a></li></ul></nav>
+    <li class="menu-book"><a href="#book" class="btn">Book tid</a></li></ul></nav>
+  <div class="nav-right">
+    <a href="#book" class="btn btn-sm">Book tid</a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Åbn menu"><span></span><span></span></button>
+  </div>
 </header>
 
 <main id="main">
@@ -102,9 +106,9 @@
     </div>
     <form id="form" class="form">
       <label>Type<select name="type"><option>Individuelt forløb</option><option>Hold / kursus</option><option>Workshop</option></select></label>
-      <label>Navn<input name="name" required autocomplete="name"></label>
-      <label>E-mail<input name="email" type="email" required autocomplete="email"></label>
-      <label>Telefon<input name="tel" type="tel" autocomplete="tel"></label>
+      <label>Navn<input name="name" required autocomplete="name" autocapitalize="words" enterkeyhint="next"></label>
+      <label>E-mail<input name="email" type="email" required autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" enterkeyhint="next"></label>
+      <label>Telefon<input name="tel" type="tel" autocomplete="tel" inputmode="tel" enterkeyhint="next"></label>
       <label>Besked (valgfri)<textarea name="msg" rows="3"></textarea></label>
       <p class="chosen" id="chosen">Ingen tid valgt</p>
       <button class="btn" type="submit">Send booking</button>
